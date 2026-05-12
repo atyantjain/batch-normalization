@@ -55,7 +55,7 @@ model = model()
 optimizer=torch.optim.Adam(model.parameters(),lr=0.001)
 criterion=nn.CrossEntropyLoss()
 
-# for plot:
+# training while collecting loss for plot:
 collect=[]
 for epoch in range(7):
     epoch_loss=0
