@@ -1,3 +1,4 @@
+# Import necessary libraries for plotting, data handling, and neural networks
 from matplotlib.lines import lineStyles
 from torch.utils.data import TensorDataset,DataLoader
 from traitlets import Long
@@ -8,9 +9,9 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 
-
-
+# Load the dataset from an Excel file
 df=pd.read_excel("data.xlsx")
+# Extract features (study hours, slept well) and labels (pass/fail)
 X=df[['study_hours','slept_well']]
 y=df['label_pass']
 
