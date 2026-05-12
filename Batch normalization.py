@@ -15,11 +15,15 @@ df=pd.read_excel("data.xlsx")
 X=df[['study_hours','slept_well']]
 y=df['label_pass']
 
+# Split data into training (80%) and a temporary set (20%)
 x_train,x_temp,y_train,y_temp=train_test_split(X,y,test_size=0.2)
+# Further split the temporary set into validation and test sets
 x_val,x_test,y_val,y_test=train_test_split(x_temp,y_temp,test_size=0.4)
 
+# Convert training data into PyTorch tensors
 x_train=torch.tensor(x_train.values,dtype=torch.float32)
 y_train=torch.tensor(y_train.values,dtype=torch.long)
+# Create a DataLoader for batching and shuffling the training data
 train_loader=DataLoader(TensorDataset(x_train,y_train),batch_size=32,shuffle=True)
 
 class model(nn.Module):
