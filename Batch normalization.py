@@ -26,15 +26,23 @@ y_train=torch.tensor(y_train.values,dtype=torch.long)
 # Create a DataLoader for batching and shuffling the training data
 train_loader=DataLoader(TensorDataset(x_train,y_train),batch_size=32,shuffle=True)
 
+# Define the Neural Network architecture
 class model(nn.Module):
     def __init__(self):
         super().__init__()
+        # First fully connected layer: 2 inputs, 64 outputs
         self.fc1 = nn.Linear(2,64)
+        # Batch Normalization layer for stabilizing and accelerating training
         self.batchnormalization=nn.BatchNorm1d(64)
+        # Activation function
         self.relu=nn.ReLU()
+        # Second fully connected layer: 64 inputs, 2 outputs (for classification)
         self.fc2=nn.Linear(64,2)
+        # Softmax for output probability distribution
         self.softmax=nn.Softmax(dim=1)
+        
     def forward(self,x):
+        # Define the forward pass logic
         x=self.fc1(x)
         x=self.batchnormalization(x)
         x=self.relu(x)
